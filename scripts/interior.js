@@ -1,18 +1,32 @@
 
-import { getInterior } from "./database.js"
+import { getInterior, setInterior } from "./database.js"
 const interiors = getInterior()
 
 export const interiorHtml = () => {
-    let html = `<select for="interior-types">`
+    document.addEventListener(
+        "change",
+        (changeEvent) => {
+            //the following code checks to see if the user clicked on the id specified when the dropdown menu was created
+            if (changeEvent.target.id === "interiors") {
+                // this returns the options value to the variable Chosen Option
+               setInterior(parseInt(changeEvent.target.value))
+    
+              
+            }
+        }
+    )
 
-    // This is how you have been converting objects to <li> elements
-    for (const interior of interiors) {
 
-        html += `<option
-             value="${interior.id}" /> ${interior.type}
-        </option>`
-    }
-
-    html += "</select>"
-    return html
+    return `<div class="box"> <section> <label for="interior-types">Interior:  </label>
+        <select id="interiors" for="interior-types">
+        <option value="0">Select an interior style: </option>
+        ${
+            interiors.map(
+                (interior) => {
+                    return `<option value="${interior.id}">${interior.type}</option>`
+                }
+            ).join("")
+        }
+        </select></section></div>
+    `
 }
