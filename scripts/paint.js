@@ -1,11 +1,28 @@
 
-import { getPaint,  } from "./database.js"
+import { getPaint, setPaint } from "./database.js"
 const paints = getPaint()
+document.addEventListener(
+    "change",
+    (changeEvent) => {
+        //the following code checks to see if the user clicked on the id specified when the dropdown menu was created
+        if (changeEvent.target.id === "paint") {
+            // this returns the options value to the variable Chosen Option
+           setPaint(parseInt(changeEvent.target.value))
 
+          
+        }
+    }
+)
 export const paintHtml = () => {
-    let html = `<select for="paint-types">`
+    let html = `
+    <div class="box"> <section class="paint options">
+    <label for="paint-types">Paint:  </label>`
 
-    // This is how you have been converting objects to <li> elements
+    html += `<select id="paint" for="paint-types">`//sets the resource id for the event listener and the label holder
+    html += '<option value="0">Select a paint package</option>' //default option for dropdown menu
+
+
+    //for of loop to crete drop down list choices from paint database
     for (const paint of paints) {
 
         html += `<option
@@ -13,6 +30,6 @@ export const paintHtml = () => {
         </option>`
     }
 
-    html += "</select>"
+    html += "</select></section></div>"
     return html
 }
