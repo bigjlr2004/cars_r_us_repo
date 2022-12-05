@@ -1,0 +1,26 @@
+.container {
+    width:900px;
+  
+      display: flex;
+    flex-direction: row;
+    
+    
+    }
+   
+   .box  {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+  
+    flex-basis: 25%;
+      width: 400px;
+      height: 100px;
+      background-color: #ead98c;
+      margin: 8px;
+      border-style: inset;
+      
+      border-radius: 10px;
+    
+    }
+
+   
