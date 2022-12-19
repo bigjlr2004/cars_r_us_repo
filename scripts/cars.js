@@ -3,7 +3,8 @@ import { technologyHtml } from "./technology.js"
 import { wheelsHtml } from "./wheels.js"
 import { interiorHtml } from "./interior.js"
 import {Orders } from "./orders.js"
-import { addCustomOrder } from "./database.js"
+import { addCustomOrder } from "./dataAccess.js"
+import { CarOptions } from "./options.js"
 
 document.addEventListener(
     "click",
@@ -17,6 +18,7 @@ document.addEventListener(
 export const carsLayout = () => {
     return `
         <h1>Cars 'R Us: Personal Car Builder</h1>
+        ${CarOptions()}
         <article class="choices">
            
             ${paintHtml()}

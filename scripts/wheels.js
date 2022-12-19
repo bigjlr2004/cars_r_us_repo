@@ -1,6 +1,6 @@
 
-import { getWheels, setWheel  } from "./database.js"
-const wheels = getWheels()
+import { getData,setData } from "./dataAccess.js"
+const wheels = getData("wheel")
 
 document.addEventListener(
     "change",
@@ -8,7 +8,7 @@ document.addEventListener(
         //the following code checks to see if the user clicked on the id specified when the dropdown menu was created
         if (changeEvent.target.id === "wheels") {
             // this returns the options value to the variable Chosen Option
-           setWheel(parseInt(changeEvent.target.value))
+           setData(parseInt(changeEvent.target.value),"wheel")
 
           
         }

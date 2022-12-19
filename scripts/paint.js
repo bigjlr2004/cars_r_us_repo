@@ -1,13 +1,13 @@
 
-import { getPaint, setPaint } from "./database.js"
-const paints = getPaint()
+import { getData, setData } from "./dataAccess.js"
+const paints = getData("paint")
 document.addEventListener(
     "change",
     (changeEvent) => {
         //the following code checks to see if the user clicked on the id specified when the dropdown menu was created
         if (changeEvent.target.id === "paint") {
             // this returns the options value to the variable Chosen Option
-           setPaint(parseInt(changeEvent.target.value))
+           setData(parseInt(changeEvent.target.value),"paint")
 
           
         }
