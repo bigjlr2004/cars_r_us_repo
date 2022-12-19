@@ -1,6 +1,5 @@
-
-import { getTechnology, setTechnology } from "./database.js"
-const technologys = getTechnology()
+import { getData, setData } from "./dataAccess.js"
+const technologys = getData("technology")
 
 document.addEventListener(
     "change",
@@ -8,7 +7,7 @@ document.addEventListener(
         //the following code checks to see if the user clicked on the id specified when the dropdown menu was created
         if (changeEvent.target.id === "tech") {
             // this returns the options value to the variable Chosen Option
-           setTechnology(parseInt(changeEvent.target.value))
+           setData(parseInt(changeEvent.target.value),"technology")
 
           
         }

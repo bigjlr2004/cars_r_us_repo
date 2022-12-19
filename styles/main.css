@@ -23,4 +23,20 @@
     
     }
 
+    .multiplier {
+      display: flex;
+      flex-direction: row;
+      padding: 1em;
+      
+      margin: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-inline-start: 0.25rem;
+}
+li {
+  padding: 15px;
+}
+
    

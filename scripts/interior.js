@@ -1,6 +1,5 @@
-
-import { getInterior, setInterior } from "./database.js"
-const interiors = getInterior()
+import { getData, setData } from "./dataAccess.js"
+const interiors = getData("interior")
 
 export const interiorHtml = () => {
     document.addEventListener(
@@ -9,7 +8,7 @@ export const interiorHtml = () => {
             //the following code checks to see if the user clicked on the id specified when the dropdown menu was created
             if (changeEvent.target.id === "interiors") {
                 // this returns the options value to the variable Chosen Option
-               setInterior(parseInt(changeEvent.target.value))
+               setData(parseInt(changeEvent.target.value),"interior")
     
               
             }

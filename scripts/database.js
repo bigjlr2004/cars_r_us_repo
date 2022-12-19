@@ -5,7 +5,7 @@
     modules to get copies of the state.
 
 */
-const database = {
+export const database = {
     orderBuilder: {}, // this database is used to store the state
 
     paint: [
@@ -19,6 +19,11 @@ const database = {
         { id: 2, type: "Charcoal Fabric", price: 782 },
         { id: 3, type: "White Leather", price: 1470 },
         { id: 4, type: "Black Leather", price: 1997 }
+    ],
+    options: [
+        { id: 1, type: "Car", price: 1 },
+        { id: 2, type: "SUV", price: 1.5 },
+        { id: 3, type: "Truck", price: 2.25}
     ],
     technology: [
         { id: 1, type: "Basic", price: 499 },
@@ -35,6 +40,7 @@ const database = {
     customOrders: [
         {
             id: 1,
+            optionId: 1,
             wheelId: 3,
             interiorId: 4,
             technologyId: 2,
@@ -43,57 +49,7 @@ const database = {
         }
     ]
 }
-export const addCustomOrder = () => {
-    //Copy the current state of user choices
-    const newOrder = {...database.orderBuilder}
 
-    //add a new primary key to the object
-    const lastIndex = database.customOrders.length - 1
-    newOrder.id = database.customOrders[lastIndex].id + 1
 
-    //add a timestamp to the order
-    newOrder.timestamp = Date.now()
 
-    //add the new order object to custom orders state
-    database.customOrders.push(newOrder)
 
-    //reset the temporary state for user choices
-    database.orderBuilder = {}
-
-    //Broadcast a notification that permanent state has changed
-    document.dispatchEvent(new CustomEvent("stateChanged"))
-}
-
-export const getCustomOrders = () => {
-    return database.customOrders.map(order => ({...order}))
-}
-
-export const getPaint = () => {
-    return database.paint.map(paint => ({...paint}))
-}
-export const getTechnology = () => {
-    return database.technology.map(tech => ({...tech}))
-}
-
-export const getWheels = () => {
-    return database.wheel.map(wheel => ({...wheel}))
-}
-
-export const getInterior = () => {
-    return database.interior.map(interior => ({...interior}))
-}
-
-export const setInterior  = (id) => {
-    database.orderBuilder.interiorId = id
-}
-export const setWheel = (id) => {
-    database.orderBuilder.wheelId = id
-}
-
-export const setTechnology = (id) => {
-    database.orderBuilder.technologyId = id
-}
-
-export const setPaint = (id) => {
-    database.orderBuilder.paintId = id
-}
